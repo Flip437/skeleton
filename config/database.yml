@@ -79,9 +79,17 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+# production:
+#   <<: *default
+#   url: <%= ENV["DATABASE_URL"] %>
+#   database: skeleton_production
+#   username: skeleton
+#   password: <%= ENV["SKELETON_DATABASE_PASSWORD"] %>
+
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
-  database: skeleton_production
-  username: skeleton
-  password: <%= ENV["SKELETON_DATABASE_PASSWORD"] %>
+  database: <%= ENV['RDS_DATABASE'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOST'] %>
+  post: 5432
